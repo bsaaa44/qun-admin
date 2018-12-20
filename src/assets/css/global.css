@@ -1,0 +1,62 @@
+.column-btn{
+  width: 100%;
+  text-align: left;
+}
+.pagination {
+  margin-top: 20px;
+  text-align: right;
+  margin-right: 20px;
+}
+.search-block {
+  margin-bottom: 20px
+}
+.search-block .label{
+  margin-right: 10px;
+  font-size: 13px
+}
+.search-block .search-inp{
+  width: 20%;
+  margin-right: 20px
+}
+.search-block .status-selector{
+  margin-right: 20px
+}
+.search-block .datePicker{
+  margin-right:20px 
+}
+.uploader{
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.img-cover {
+  width: 100px;
+  height: 100px;
+  display: block;
+}
+.uploader:hover {
+  border-color: #409EFF;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+}
+.form-block {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px
+}
+.form-block .inp {
+  width: 70%;
+}

@@ -12,8 +12,8 @@
   <div>
     <div class='search-block'>
       <el-input class='search-inp' placeholder='输入群名称查询' v-model='keyword' @keyup.native.enter='handleSearch' size='mini'/>
-      <el-select class='status-selector' v-model='status' placeholder='提现状态' @change='handleSearch' size='mini'>
-        <el-option label='提现状态' value=''></el-option>
+      <el-select class='status-selector' v-model='status' placeholder='群类别' @change='handleSearch' size='mini'>
+        <el-option label='群类别' value=''></el-option>
         <el-option v-for='(item,index) in categories' :key='index' :label='item.name' :value='item.id'></el-option>
       </el-select>
       <span class='label'>添加时间:</span>

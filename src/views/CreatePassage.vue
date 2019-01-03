@@ -6,7 +6,7 @@
     </div>
     <div class='content-block'>
       <div class='label'>发布时间</div>
-      <el-input class='inp' v-model='timeInp' placeholder="输入发布时间"/>
+      <el-input class='inp' v-model='timeInp' placeholder="输入发布时间 格式yyyy-mm-dd"/>
     </div>
     <div class='content-block'>
       <vue-editor v-model='detailInp' id='editor' useCustomImageHandler
@@ -35,8 +35,13 @@ export default {
     'vue-editor': VueEditor
   },
   created(){
-    if(this.$route.params.id){
-      this.currentId = this.$route.params.id
+    console.log(this.$route.query.id)
+    if(this.$route.query.id){
+      console.log(this.$global.currentPassage)
+      this.currentId = this.$route.query.id
+      this.detailInp = this.$global.currentPassage.row.content
+      this.titleInp = this.$global.currentPassage.row.title
+      this.timeInp = this.$global.currentPassage.row.release_time
     }
   },
   methods:{
@@ -55,6 +60,7 @@ export default {
           message: '发布成功',
           type: 'success'
         })
+        this.$global.currentPassage = ''
         this.$router.push('/home/passageManage')
       },res=>{
 

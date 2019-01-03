@@ -7,7 +7,7 @@
 <template>
   <div>
     <div class='search-block'>
-      <el-input class='search-inp' placeholder='输入群名称查询' v-model='keyword' @keyup.native.enter='handleSearch' size='mini'/>
+      <el-input class='search-inp' placeholder='输入用户ID/用户昵称查询' v-model='keyword' @keyup.native.enter='handleSearch' size='mini'/>
       <span class='label'>注册时间:</span>
       <el-date-picker class='datePicker' value-format='yyyy-MM-dd' v-model="dataRange" type="daterange" @change='handleSearch' range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" size='mini'>
       </el-date-picker>

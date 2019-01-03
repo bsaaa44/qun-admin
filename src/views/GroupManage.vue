@@ -29,7 +29,7 @@
         <el-table-column prop='category' label='群类别'></el-table-column>
         <el-table-column prop='group_name' label='群名称'></el-table-column>
         <el-table-column prop='created_at' label='添加时间'></el-table-column>
-        <el-table-column prop='remain' label='已兑换次数'></el-table-column>
+        <el-table-column prop='remain' label='剩余展示次数'></el-table-column>
         <el-table-column label='群二维码'>
           <template slot-scope='scope'>
             <div @click='currentImg = scope.row.qrcode;showPreview = true'>
@@ -63,6 +63,10 @@
       <div class='form-block'>
         <div class='label'>群名称</div>
         <el-input class='inp' v-model='groupNameInp' placeholder="输入群的名称"/>
+      </div>
+      <div class='form-block' v-if='currentId != 0'>
+        <div class='label'>剩余展示次数</div>
+        <el-input class='inp' v-model='remainInp' placeholder="输入剩余展示次数"></el-input>
       </div>
       <div class='form-block'>
         <div class='label'>上传群二维码</div>
@@ -104,7 +108,7 @@ export default {
       newTypeInp: '',
       groupNameInp: '',
       currentId: 0,
-      currentRemain: 0
+      remainInp: 0
     }
   },
   created(){
@@ -146,9 +150,9 @@ export default {
           this.typeSelect = this.categories[i].id
         }
       }
+      this.remainInp = scope.row.remain
       this.groupNameInp = scope.row.group_name
       this.uploadCover = scope.row.qrcode
-      this.currentRemain = scope.row.remain
       this.showPop = true
     },
     handleCreate: function(){
@@ -171,7 +175,7 @@ export default {
         category_id: this.typeSelect,
         new_category: this.newTypeInp,
         qrcode: this.uploadCover,
-        remain: this.currentRemain
+        remain: this.remainInp
       }
       }
       this.$utils.axiosRequest(methods, `/group`, '', data, res=>{
@@ -179,8 +183,9 @@ export default {
           message: '操作成功',
           type: 'success'
         })
-        this.currentRemain = 0
+        this.remainInp = 0
         this.currentId = 0
+        this.uploadCover = ''
         this.newTypeInp = ''
         this.groupNameInp = ''
         this.typeSelect = '' 

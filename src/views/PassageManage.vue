@@ -9,7 +9,8 @@
   .time 
     margin-bottom 10px
     font-size 14px
-
+  img 
+    max-width 100%
 </style>
 
 <template>
@@ -33,7 +34,7 @@
         <el-table-column prop='view' label='浏览量'></el-table-column>
         <el-table-column label='操作'>
           <template slot-scope='scope'>
-            <el-button type='text' @click='navToEdit(scope.row.id)'>编辑</el-button>
+            <el-button type='text' @click='navToEdit(scope)'>编辑</el-button>
             <el-button type='text' @click='handleDelete(scope.row.id)'>删除</el-button>
             <el-button type='text' @click='handlePost(scope)' v-if='scope.row.public == 0'>发布</el-button>
             <el-button type='text' @click='handlePost(scope)' v-if='scope.row.public == 1'>下架</el-button>
@@ -71,11 +72,12 @@ export default {
     this.maxHeight = window.innerHeight - 200
   },
   methods: {
-    navToEdit: function(id){
+    navToEdit: function(scope){
+      this.$global.currentPassage = scope
       this.$router.push({
         path: '/home/createPassage',
         query: {
-          id
+          id: scope.row.id
         }
       })
     },
@@ -104,7 +106,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$utils.axiosRequest('GET', `/article/${id}`, '', '', res=>{
+        this.$utils.axiosRequest('delete', `/article/${id}`, '', '', res=>{
           this.$message({
             message: '操作成功',
             type: 'success'
